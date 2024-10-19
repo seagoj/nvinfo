@@ -7,6 +7,7 @@
 
 let s:vinfo_autoload_path = expand('<sfile>:p:h')
 let s:vinfo_repo_path = fnamemodify(get(g:, "vinfo_repo_path", s:vinfo_autoload_path . '/../plugin/vinfo_doc_repo'), ':p:h')
+execure "!mkdir -p $(dirname " . s:vinfo_repo_path . "")"
 let s:vinfo_current_doc = ""
 let s:vinfo_current_page = 0
 let s:vinfo_current_doc_pages = 0
