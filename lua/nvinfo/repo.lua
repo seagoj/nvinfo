@@ -1,5 +1,11 @@
 local repo = {}
 
+function repo.clean(path)
+	vim.print("[Nvinfo] Cleaning repository: " .. path)
+	vim.cmd("silent !rm -rf " .. path .. "/*")
+	vim.cmd("redraw!")
+end
+
 function repo.create(path, doc)
 	vim.print("[Nvinfo] Creating repo for: " .. doc)
 	local doc_path = path .. "/" .. doc .. "/"

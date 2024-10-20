@@ -28,6 +28,11 @@ function nvinfo.setup(opts)
 	nvinfo.config = opts
 end
 
+function nvinfo.clean()
+	repo.clean(nvinfo.config.repo_path)
+	vim.print("[Nvinfo] Repository is now empty")
+end
+
 -- TODO does nvim have a builtin for this?
 local function file_exists(file)
 	local f = io.open(file, "r")
