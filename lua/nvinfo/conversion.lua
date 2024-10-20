@@ -49,38 +49,36 @@ function conversion.info2help()
 	vim.cmd([=[silent g/\v^File: /exe [[norm! \"oPj\"op\<Esc>]]]=])
 end
 
-return conversion
-
 local function create_tag()
 	-- Create self node tag
-	vim.cmd('silent! norm! ' . '/\vNode: ' . "\<CR>W\"oyt,mm")
-	vim.fn.setreg("o", "\n*" . @o . "*\n")
+	vim.cmd('silent! norm! ' .. '/\vNode: ' .. "\<CR>W\"oyt,mm")
+	vim.fn.setreg("o", "\n*" .. @o .. "*\n")
 
 
 	vim.cmd("silent norm! \"op")
-	vim.cmd('silent norm! ' .  "j0V\<Esc>")
+	vim.cmd('silent norm! ' ..  "j0V\<Esc>")
 	vim.cmd('silent s/\%V /_/ge')
 	vim.cmd('silent s/\%V-/_/ge')
 	vim.cmd('silent right')
-	vim.cmd('silent norm! ' . "\'m")
+	vim.cmd('silent norm! ' .. "\'m")
 
 -- Create tag references
 -- Node:
 	vim.cmd('silent! norm! ' . '/\vNode: ' . "\<CR>Wvt,y\<Esc>")
 
 	-- FIXME figure out what the fuck this is doing
-	if @@ !~? '.\+|' && @@ !~? '.\+)'
-	exe 'silent s/\%V /_/ge|s/\%V-/_/ge'
-	exe 'silent norm! ' . "gv\<Esc>a|\<Esc>gvo\<Esc>i|\<Esc>"
-		exe 'silent norm! ' . "\'m"
-	endif
-	" Next:
-exe 'silent! norm! ' . '/\vNext: ' . "\<CR>Wvt,y\<Esc>"
-	if @@ !~? '.\+|' && @@ !~? '.\+)'
-	exe 'silent s/\%V /_/ge|s/\%V-/_/ge'
-	exe 'silent norm! ' . "gv\<Esc>a|\<Esc>gvo\<Esc>i|\<Esc>"
-		exe 'silent norm! ' . "\'m"
-	endif
+	if @@ !~? '.\+|' && @@ !~? '.\+)' then
+		exe 'silent s/\%V /_/ge|s/\%V-/_/ge'
+		exe 'silent norm! ' . "gv\<Esc>a|\<Esc>gvo\<Esc>i|\<Esc>"
+			exe 'silent norm! ' . "\'m"
+	end
+	-- Next:
+	vim.cmd('silent! norm! ' . '/\vNext: ' . "\<CR>Wvt,y\<Esc>")
+	if @@ !~? '.\+|' && @@ !~? '.\+)' then
+		vim.cmd('silent s/\%V /_/ge|s/\%V-/_/ge')
+		vim.cmd('silent norm! ' . "gv\<Esc>a|\<Esc>gvo\<Esc>i|\<Esc>")
+		vim.cmd('silent norm! ' . "\'m")
+	end
 	" Prev:
 exe 'silent! norm! ' . '/\vPrev: ' . "\<CR>Wvt,y\<Esc>"
 	if @@ !~? '.\+|' && @@ !~? '.\+)'

@@ -92,4 +92,36 @@ function nvinfo.show(doc, page)
 	vim.cmd("norm gg")
 end
 
+function nvinfo.next_page()
+	if NVINFO_CURRENT_DOC == "" then
+		return 0
+	end
+
+	-- Advance page number
+	if NVINFO_CURRENT_PAGE + 1 >= NVINFO_CURRENT_DOC_PAGES then
+		vim.print("[Nvinfo] No pages left for " .. NVINFO_CURRENT_DOC)
+		return 0
+	end
+
+	NVINFO_CURRENT_PAGE = NVINFO_CURRENT_PAGE + 1
+
+	nvinfo.show(NVINFO_CURRENT_DOC, NVINFO_CURRENT_PAGE)
+end
+
+function nvinfo.previous_page()
+	if NVINFO_CURRENT_DOC == "" then
+		return 0
+	end
+
+	-- Advance page number
+	if NVINFO_CURRENT_PAGE - 1 <= 0 then
+		vim.print("[Nvinfo] Currently at the first page of " .. NVINFO_CURRENT_DOC)
+		return 0
+	end
+
+	NVINFO_CURRENT_PAGE = NVINFO_CURRENT_PAGE - 1
+
+	nvinfo.show(NVINFO_CURRENT_DOC, NVINFO_CURRENT_PAGE)
+end
+
 return nvinfo
