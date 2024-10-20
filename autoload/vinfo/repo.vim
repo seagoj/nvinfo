@@ -8,16 +8,16 @@
 " exists(path, doc) {{{1
 " Returns TRUE if DOC exists in repo PATH
 function! vinfo#repo#exists(path, doc)
-    let l:dirs = split(globpath(a:path, '*'), '\n')
+		let l:dirs = split(globpath(a:path, '*'), '\n')
 
-    for l:dir in l:dirs
-        let l:doc_dir = a:path . '/' . a:doc
-        if l:dir ==? l:doc_dir
-            return 1
-        endif
-    endfor
+		for l:dir in l:dirs
+				let l:doc_dir = a:path . '/' . a:doc
+				if l:dir ==? l:doc_dir
+						return 1
+				endif
+		endfor
 
-    return 0
+		return 0
 endfunction
 " }}}1
 
@@ -27,24 +27,24 @@ endfunction
 " Create and split info plain text files of DOC in repo PATH
 " Returns TRUE if success
 function! vinfo#repo#create(path, doc)
-    echom '[Vinfo] Creating repo for: ' . a:doc
-    let l:doc_path = a:path . '/' . a:doc . '/'
-    let l:doc = l:doc_path . a:doc . '.txt'
-    exe 'silent !mkdir -p ' . l:doc_path
-    exe 'silent !info ' . a:doc . ' >> ' . l:doc
-    let splitter = executable('gsplit') ? 'gsplit' : 'split'
-    exe 'silent ! ' . splitter . ' -l 5000 -d --additional-suffix .txt ' . l:doc . ' ' . l:doc_path . a:doc
-    exe 'silent !rm ' . l:doc
-    exe 'redraw!'
+		echom '[Vinfo] Creating repo for: ' . a:doc
+		let l:doc_path = a:path . '/' . a:doc . '/'
+		let l:doc = l:doc_path . a:doc . '.txt'
+		exe 'silent !mkdir -p ' . l:doc_path
+		exe 'silent !info ' . a:doc . ' >> ' . l:doc
+		let splitter = executable('gsplit') ? 'gsplit' : 'split'
+		exe 'silent ! ' . splitter . ' -l 5000 -d --additional-suffix .txt ' . l:doc . ' ' . l:doc_path . a:doc
+		exe 'silent !rm ' . l:doc
+		exe 'redraw!'
 
-    " If DOC is not a valid Info file, none file will be created
-    let l:doc_files = split(globpath(l:doc_path, '*'), '\n')
-    if len(l:doc_files) ==? 0
-        exe 'silent !rmdir ' . l:doc_path
-        return 0
-    endif
+		" If DOC is not a valid Info file, none file will be created
+		let l:doc_files = split(globpath(l:doc_path, '*'), '\n')
+		if len(l:doc_files) ==? 0
+				exe 'silent !rmdir ' . l:doc_path
+				return 0
+		endif
 
-    return 1
+		return 1
 endfunction
 " }}}1
 
@@ -53,8 +53,8 @@ endfunction
 " clean(path) {{{1
 " Clean all docs in repo PATH
 function! vinfo#repo#clean(path)
-    echom '[Vinfo] Cleaning repository'
-    exe 'silent !rm -rf ' . a:path . '/*'
-    exe 'redraw!'
+		echom '[Vinfo] Cleaning repository'
+		exe 'silent !rm -rf ' . a:path . '/*'
+		exe 'redraw!'
 endfunction
 " }}}1

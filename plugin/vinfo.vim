@@ -2,6 +2,7 @@
 " File: vinfo.vim
 " Description: Define user commands
 " Author: Daniel Campoverde [alx741] <alx741@riseup.net>
+" Author: Jeremy Seago [seagoj] <jeremy@seago.io>
 " =============================================================================
 
 

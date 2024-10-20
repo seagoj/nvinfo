@@ -1,3 +1,5 @@
+Fork of [alx741/vinfo](https://github.com/alx741/vinfo) for neovim
+
 # 1. Introduction
 
 Vinfo is a Vim plugin that allows you to read
