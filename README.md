@@ -17,6 +17,9 @@ That is where *Vinfo* comes in, leveraging Vim's help-files format and
 navigation (tags jumping).
 
 
+## TODO 
+
+Conform to [best practices](https://github.com/ColinKennedy/nvim-best-practices-plugin-template?__readwiseLocation=)
 
 # 2. Installation
 
